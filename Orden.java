@@ -6,11 +6,14 @@ public class Orden{
     List <Producto> Productos;
     boolean Reserva;
 
-    public ProcesarOrden(){
-        //Esto solo para que permita
-        return 2;
+    public ProcesarOrden( int Id, int IdUsuario, List <Producto> Productos, boolean Reserva){
+        this.Id = Id;
+        this.IdUsuario = IdUsuario;
+        this.Productos = Productos;
+        this.Reserva = Reserva;
     }
 
+    //setters y getters necesarios
     public void setId(int Id){
         this.Id = Id;
     }
