@@ -30,4 +30,8 @@ public class Orden{
         return this.IdUsuario;
     }
 
+    public boolean isReserva(){
+        return this.Reserva;
+    }
+
 }

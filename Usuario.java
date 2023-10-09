@@ -22,7 +22,7 @@ public class Usuario {
         this.esVendedor = esVendedor;
     }
     
-        public int getId() {
+    public int getId() {
         return id;
     }
 
