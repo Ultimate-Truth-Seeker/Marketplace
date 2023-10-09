@@ -1,3 +1,5 @@
+package Marketplace;
+
 import java.util.List;
 
 public class Orden{
@@ -6,7 +8,7 @@ public class Orden{
     List <Producto> Productos;
     boolean Reserva;
 
-    public ProcesarOrden( int Id, int IdUsuario, List <Producto> Productos, boolean Reserva){
+    public Orden( int Id, int IdUsuario, List <Producto> Productos, boolean Reserva){
         this.Id = Id;
         this.IdUsuario = IdUsuario;
         this.Productos = Productos;
@@ -28,6 +30,10 @@ public class Orden{
 
     public int getIdUsuario(){
         return this.IdUsuario;
+    }
+
+    public boolean isReserva(){
+        return this.Reserva;
     }
 
 }
