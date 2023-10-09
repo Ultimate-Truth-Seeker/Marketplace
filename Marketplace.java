@@ -18,8 +18,9 @@ public class Marketplace {
         List<Orden> orders = new ArrayList<>();
         List<Vendedor> vendedors = new ArrayList<>();
 
-        Scanner s = new Scanner(System.in);
+        Scanner s;
         while (Run) {
+            s = new Scanner(System.in);
             Pages.Home(logedin);
             op = s.nextInt();
             if (logedin) {
@@ -44,7 +45,16 @@ public class Marketplace {
                                     break;
                                 }
                                 if (amount <= p.getCantidad()) {
-                                    users.get(logedUser).añadirAlCarrito(new Producto(p.getId(), p.getNombre(), p.getPrecio(), amount, p.getDescripcion(), p.getIdVendedor()));
+                                    boolean extra = false;
+                                    for (Producto cp : users.get(logedUser).getCarrito()) {
+                                        if (cp.getId() == p.getId()) {
+                                            users.get(logedUser).getCarrito().get(users.get(logedUser).getCarrito().indexOf(cp)).setCantidad(users.get(logedUser).getCarrito().get(users.get(logedUser).getCarrito().indexOf(cp)).getCantidad()+ amount);
+                                            extra = true;
+                                        }
+                                    }
+                                    if (!extra) {
+                                        users.get(logedUser).añadirAlCarrito(new Producto(p.getId(), p.getNombre(), p.getPrecio(), amount, p.getDescripcion(), p.getIdVendedor()));
+                                    }
                                     for (Vendedor v: vendedors) {
                                         if (v.getId() == p.getIdVendedor()) {
                                             vendedors.get(vendedors.indexOf(v)).getProductos().get(vendedors.get(vendedors.indexOf(v)).getProductos().indexOf(p)).setCantidad(vendedors.get(vendedors.indexOf(v)).getProductos().get(vendedors.get(vendedors.indexOf(v)).getProductos().indexOf(p)).getCantidad() - amount);
@@ -72,7 +82,7 @@ public class Marketplace {
                         int logedVendedor = -1;
                         for (Vendedor v : vendedors) {
                             if (v.getId() == users.get(logedUser).getId()) {
-                                logedVendedor = v.getId();
+                                logedVendedor = vendedors.indexOf(v);
                             }
                         }
                         Pages.ConfigStore(vendedors, products, logedVendedor, s);
@@ -93,12 +103,13 @@ public class Marketplace {
                             Orden compra = new Orden(max +1, users.get(logedUser).getId(), users.get(logedUser).getCarrito(), true);
                             orders.add(compra);
                             users.get(logedUser).añadirCompra(compra);
-                            users.setCarrito();
-                            Pages.Contact(compra.getProductos(), vendedors);
+                            
+                            Pages.Contact(users.get(logedUser).getCarrito(), vendedors);
                         }
                     } else if (op == 2) {
-                        users.get(logedUser).setCarrito(Pages.RemoveItem(users.get(logedUser).getCarrito(), s));
-
+                        
+                        List<Producto> nCarro = Pages.RemoveItem(users.get(logedUser).getCarrito(), s);
+                        users.get(logedUser).setCarrito(nCarro);
                     }
                     break;
                     case 4:
@@ -110,6 +121,7 @@ public class Marketplace {
                     break;
                     case 6:
                     Run = false;
+                    s.close();
                     break;
                     default:
                     break;
@@ -131,11 +143,12 @@ public class Marketplace {
                     }
                 } else if (op == 3) {
                     Run = false;
+                    s.close();
                     break;
                 }
                 
             }
         }
-        s.close();
+       
     }
 }

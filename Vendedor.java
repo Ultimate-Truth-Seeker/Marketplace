@@ -25,7 +25,7 @@ public class Vendedor extends Usuario{
     }
 
     public Vendedor(int cuentaDeDeposito, Usuario u){
-        super(cuentaDeDeposito, u.getNombre(), u.getNombreUsuario(), u.getContraseña(), u.getEmail(), u.isEsVendedor());
+        super(u.getId(), u.getNombre(), u.getNombreUsuario(), u.getContraseña(), u.getEmail(), u.isEsVendedor());
         this.cuentaDeDeposito = cuentaDeDeposito;
         this.productos =  new ArrayList<Producto>();
     }
@@ -52,14 +52,16 @@ public class Vendedor extends Usuario{
         int option = sc.nextInt() -1;
         Producto aux = productos.get(option);
         System.out.println("Modificar nombre: ");
+        sc.nextLine();
         aux.setNombre(sc.nextLine());
         System.out.println("Modificar precio: ");
         aux.setPrecio(sc.nextInt());
         System.out.println("Modificar cantidad: ");
         aux.setCantidad(sc.nextInt());
         System.out.println("Modificar descripcion: ");
+        sc.nextLine();
         aux.setDescripcion(sc.nextLine());
-        sc.close();
+        //sc.close();
         return aux;
     }
     public void concretarPedido(Orden orden){

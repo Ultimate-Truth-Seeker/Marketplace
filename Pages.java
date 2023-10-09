@@ -229,7 +229,7 @@ public class Pages {
                     max = p.getId();
                 }
             }
-            Producto pr = new Producto(max + 1, nombre, precio, cantidad, descripcion, logedUser);
+            Producto pr = new Producto(max + 1, nombre, precio, cantidad, descripcion, sellers.get(logedUser).getId());
             sellers.get(logedUser).crearProducto(pr);
             productos.add(pr);
             System.out.println("Producto añadido con éxito");
@@ -274,12 +274,17 @@ public class Pages {
     }
 
     public static List<Producto> RemoveItem(List<Producto> items, Scanner s) {
-        System.out.println("Ingrese el id del producto que desea encontrar:");
+        System.out.println("Ingrese el id del producto que desea quitar:");
         int id = s.nextInt();
+        Producto pr = null;
         for (Producto p : items) {
             if (p.getId() == id) {
-                items.remove(p);
+                pr = p;
             }
+        }
+        if (pr != null) {
+            items.remove(items.indexOf(pr));
+            
         }
         return items;
     }
@@ -315,6 +320,7 @@ public class Pages {
         System.out.println("Contacto con los vendedores: ");
         for (Producto p : productos) {
             for (Vendedor v: sellers) {
+              //  System.out.println(""+v.getId()+p.getIdVendedor());
                 if (v.getId() == p.getIdVendedor()) {
                     System.out.println("Email: " + v.getEmail());
                 }
