@@ -21,4 +21,72 @@ public class Usuario {
         this.compras = new ArrayList<>();
         this.esVendedor = esVendedor;
     }
+    
+        public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Producto> getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(List<Producto> carrito) {
+        this.carrito = carrito;
+    }
+
+    public List<Orden> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<Orden> compras) {
+        this.compras = compras;
+    }
+
+    public boolean isEsVendedor() {
+        return esVendedor;
+    }
+
+    public void setEsVendedor(boolean esVendedor) {
+        this.esVendedor = esVendedor;
+    }
+
+    public void añadirAlCarrito(Producto producto) {
+        carrito.add(producto);
+    }
 }
