@@ -3,7 +3,12 @@ package Marketplace;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * Driver program para Marketplace
+ * Tiene el rol de Controlador, e implementa el modelo
+ * @version 8/10/2023
+ * @author Grupo de Marketplace POO
+ */
 public class Marketplace {
     public static void main(String[] args) {
         boolean logedin = false; int op; Boolean Run = true;
@@ -28,10 +33,9 @@ public class Marketplace {
                     if (choice == 0) {
                         break;
                     }
-                    boolean found = false;
+                    
                     for (Producto p : products) {
                         if (p.getId() == choice) {
-                            found = true;
                             Pages.ProductPage(p);
                             int amount = s.nextInt();
                             while (true) {
@@ -41,7 +45,13 @@ public class Marketplace {
                                 }
                                 if (amount <= p.getCantidad()) {
                                     users.get(logedUser).añadirAlCarrito(new Producto(p.getId(), p.getNombre(), p.getPrecio(), amount, p.getDescripcion(), p.getIdVendedor()));
+                                    for (Vendedor v: vendedors) {
+                                        if (v.getId() == p.getIdVendedor()) {
+                                            vendedors.get(vendedors.indexOf(v)).getProductos().get(vendedors.get(vendedors.indexOf(v)).getProductos().indexOf(p)).setCantidad(vendedors.get(vendedors.indexOf(v)).getProductos().get(vendedors.get(vendedors.indexOf(v)).getProductos().indexOf(p)).getCantidad() - amount);
+                                        }
+                                    }
                                     products.get(products.indexOf(p)).setCantidad(p.getCantidad() - amount);
+                                    
                                     Pages.PPageMessage(amount);
                                     break;
                                 }

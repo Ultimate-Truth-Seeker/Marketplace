@@ -3,7 +3,12 @@ package Marketplace;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * Clase con una variedad de mensajes y visualizaciones que se le muestran al usuario
+ * Tiene el rol de Vista
+ * @version 8/10/2023
+ * @author Grupo de Marketplace de POO
+ */
 public class Pages {
 
     public static void Home(boolean logedin) {
@@ -299,6 +304,7 @@ public class Pages {
         if (s.nextLine().equals("0")) {
             return false;
         }
+        // Aquí verificaría la cuenta bancaria si el programa pudiera acceder a estados de cuenta bacarios
         return true;
         
     }
