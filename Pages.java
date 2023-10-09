@@ -198,9 +198,109 @@ public class Pages {
         return false;
     }
 
-    public static void ConfigStore(List<Vendedor> sellers, int logedUser, Scanner s) {
+    public static void ConfigStore(List<Vendedor> sellers, List<Producto> productos, int logedUser, Scanner s) {
         System.out.println("Configuración de productos");
+        System.out.println("Productos que tiene a la venta:");
+        for (Producto p: sellers.get(logedUser).getProductos()) {
+            System.out.println("ID: " + p.getId() + ", Nombre: " + p.getNombre());
+        }
         System.out.println("Ingrese una opción:\n1. Añadir producto\n2. Editar producto\n3. Eliminar producto\n4. Regresar");
+        switch (s.nextInt()) {
+            case 1:
+            System.out.println("Ingrese el nombre del producto:");
+            s.nextLine();
+            String nombre = s.nextLine();
+            System.out.println("Ingrese el precio:");
+            int precio = s.nextInt();
+            System.out.println("Ingrese la cantidad disponible en inventario:");
+            int cantidad = s.nextInt();
+            System.out.println("Ingrese una descripción del producto: ");
+            s.nextLine();
+            String descripcion = s.nextLine();
+            int max = 0;
+            for (Producto p : productos) {
+                if (p.getId() > max) {
+                    max = p.getId();
+                }
+            }
+            Producto pr = new Producto(max + 1, nombre, precio, cantidad, descripcion, logedUser);
+            sellers.get(logedUser).crearProducto(pr);
+            productos.add(pr);
+            System.out.println("Producto añadido con éxito");
+            break;
+            case 2:
+            s.nextLine();
+            Producto edited = sellers.get(logedUser).editarProducto();
+            for (Producto p : productos) {
+                if (edited.getId() == p.getId()) {
+                    productos.remove(productos.get(productos.indexOf(p)));
+                    productos.add(edited);
+                    break;
+                }
+            }
+            break;
+            case 3:
+            System.out.println("Ingrese el id del producto que desee eliminar:");
+            int eliminate = s.nextInt();
+            for (Producto p : sellers.get(logedUser).getProductos()) {
+                if (p.getId() == eliminate) {
+                    sellers.get(logedUser).eliminarProducto(p);
+                    productos.remove(p);
+                    break;
+                }
+            }
+            break;
+            case 4:
+            System.out.println("Regresando a Inicio...");
+            break;
+            default:
+            System.out.println("Ingrese una opción válida");
+            break;
+        }
+    }
+
+    public static void Cart(List<Producto> items) {
+        System.out.println("Productos en el carrito:");
+        for (Producto p : items) {
+            System.out.println("ID: " + p.getId() + ", Nombre: " + p.getNombre() + ", Cantidad: " + p.getCantidad() + ", Precio individual: " + p.getPrecio());
+        }
+        System.out.println("Elija una opción:\n1. Pagar\n2. Quitar item\n3. Regresar");
+    }
+
+    public static List<Producto> RemoveItem(List<Producto> items, Scanner s) {
+        System.out.println("Ingrese el id del producto que desea encontrar:");
+        int id = s.nextInt();
+        for (Producto p : items) {
+            if (p.getId() == id) {
+                items.remove(p);
+            }
+        }
+        return items;
+    }
+
+    public static boolean Pagar(Scanner s, List<Producto> cart) {
+        System.out.println("RESUMEN DE LA FACTURA");
+        float TOTAL = 0;
+        for (Producto p : cart) {
+            System.out.println("" + p.getCantidad() + " * " + p.getNombre() + " --- $" + p.getCantidad()*p.getPrecio());
+            TOTAL += p.getCantidad()*p.getPrecio();
+        }
+        System.out.println("TOTAL A PAGAR: $" + TOTAL);
+        System.out.println("Ingrese su número de tarjeta: ");
+        s.nextInt();
+        System.out.println("Ingrese el mes de vencimiento: ");
+        s.nextInt();
+        System.out.println("Ingrese el año de vencimiento: ");
+        s.nextInt();
+        System.out.println("Ingrese el código de seguridad: ");
+        s.nextInt();
+        System.out.println("Esta a punto de pagar $" + TOTAL + " de su cuenta, ¿Está seguro?, ingrese 0 para cancelar.");
+        s.nextLine();
+        if (s.nextLine().equals("0")) {
+            return false;
+        }
+        return true;
+        
     }
 }
 

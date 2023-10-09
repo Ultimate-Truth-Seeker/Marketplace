@@ -91,4 +91,7 @@ public class Usuario {
     public void añadirAlCarrito(Producto producto) {
         carrito.add(producto);
     }
+    public void añadirCompra(Orden orden) {
+        compras.add(orden);
+    }
 }

@@ -59,8 +59,35 @@ public class Marketplace {
                             users.get(logedUser).setEsVendedor(true);
                             vendedors.add(new Vendedor(s.nextInt(), users.get(logedUser)));
                         }
-                        
+                        int logedVendedor = -1;
+                        for (Vendedor v : vendedors) {
+                            if (v.getId() == users.get(logedUser).getId()) {
+                                logedVendedor = v.getId();
+                            }
+                        }
+                        Pages.ConfigStore(vendedors, products, logedVendedor, s);
                      }
+                    break;
+                    case 3:
+                    Pages.Cart(users.get(logedUser).getCarrito());
+                    op = s.nextInt();
+                    if (op == 1) {
+                        boolean buy = Pages.Pagar(s, users.get(logedUser).getCarrito());
+                        if (buy) {
+                            int max = 0;
+                            for (Orden o: orders) {
+                                if (o.getId() > max) {
+                                    max = o.getId();
+                                }
+                            }
+                            Orden compra = new Orden(max +1, users.get(logedUser).getId(), users.get(logedUser).getCarrito(), true);
+                            orders.add(compra);
+                            users.get(logedUser).añadirCompra(compra);
+                        }
+                    } else if (op == 2) {
+                        users.get(logedUser).setCarrito(Pages.RemoveItem(users.get(logedUser).getCarrito(), s));
+
+                    }
                     break;
                     case 4:
                     Pages.Logout();

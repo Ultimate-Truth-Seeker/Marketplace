@@ -43,7 +43,7 @@ public class Vendedor extends Usuario{
         }
     }
 
-    public void editarProducto(){
+    public Producto editarProducto(){
         System.out.println("Seleccione el producto que desea editar");
         for(int i=0; i<productos.size(); i++){
             System.out.println((i+1)+". "+productos.get(i).getNombre()+ " precio: "+productos.get(i).getPrecio());
@@ -59,6 +59,8 @@ public class Vendedor extends Usuario{
         aux.setCantidad(sc.nextInt());
         System.out.println("Modificar descripcion: ");
         aux.setDescripcion(sc.nextLine());
+        sc.close();
+        return aux;
     }
     public void concretarPedido(Orden orden){
         ArrayList<Producto> ordenProductos = new ArrayList<>(orden.Productos);
