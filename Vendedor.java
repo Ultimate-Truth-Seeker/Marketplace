@@ -1,8 +1,10 @@
+package Marketplace;
+
 //Clase vendedor
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Vendedor  {
+public class Vendedor extends Usuario{
     private int cuentaDeDeposito;
     private  ArrayList<Producto> productos;
 
@@ -22,8 +24,10 @@ public class Vendedor  {
         this.productos = productos;
     }
 
-    public Vendedor(){
-        productos =  new ArrayList<Producto>();
+    public Vendedor(int cuentaDeDeposito, Usuario u){
+        super(cuentaDeDeposito, u.getNombre(), u.getNombreUsuario(), u.getContraseña(), u.getEmail(), u.isEsVendedor());
+        this.cuentaDeDeposito = cuentaDeDeposito;
+        this.productos =  new ArrayList<Producto>();
     }
 
     public void crearProducto(Producto producto){

@@ -8,7 +8,7 @@ public class Producto {
     private String descripcion;
     private int idVendedor;
 
-
+    
     public int getId() {
         return id;
     }
@@ -63,6 +63,15 @@ public class Producto {
     }
 
     public void setIdVendedor(int idVendedor) {
+        this.idVendedor = idVendedor;
+    }
+
+    public Producto(int id, String nombre, float precio, int cantidad, String descripcion, int idVendedor) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.descripcion = descripcion;
         this.idVendedor = idVendedor;
     }
 }
