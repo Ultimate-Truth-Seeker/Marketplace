@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 /**
  * Driver program para Marketplace
- * Tiene el rol de Controlador, e implementa el modelo
+ * Tiene el rol de Controlador, y ajusta el modelo de fondo con las clases de datos
  * @version 8/10/2023
  * @author Grupo de Marketplace POO
  */
@@ -93,6 +93,8 @@ public class Marketplace {
                             Orden compra = new Orden(max +1, users.get(logedUser).getId(), users.get(logedUser).getCarrito(), true);
                             orders.add(compra);
                             users.get(logedUser).añadirCompra(compra);
+                            users.setCarrito();
+                            Pages.Contact(compra.getProductos(), vendedors);
                         }
                     } else if (op == 2) {
                         users.get(logedUser).setCarrito(Pages.RemoveItem(users.get(logedUser).getCarrito(), s));
@@ -100,10 +102,13 @@ public class Marketplace {
                     }
                     break;
                     case 4:
+                    Pages.Tutorial();
+                    break;
+                    case 5:
                     Pages.Logout();
                     logedin = false;
                     break;
-                    case 5:
+                    case 6:
                     Run = false;
                     break;
                     default:

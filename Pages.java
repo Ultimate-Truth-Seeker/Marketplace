@@ -6,6 +6,7 @@ import java.util.Scanner;
 /**
  * Clase con una variedad de mensajes y visualizaciones que se le muestran al usuario
  * Tiene el rol de Vista
+ * De momento es solamente a consola
  * @version 8/10/2023
  * @author Grupo de Marketplace de POO
  */
@@ -20,7 +21,7 @@ public class Pages {
             System.out.println("Seleccione una opción: \n1. Iniciar sesión\n2. Registrarse\n3. Salir");
         }
         else {
-            System.out.println("Seleccione una opción: \n1.Buscar productos\n2. Configuración\n3. Ver Carrito\n4. Cerrar Sesión\n5. Salir");
+            System.out.println("Seleccione una opción: \n1.Buscar productos\n2. Configuración\n3. Ver Carrito\n4. Tutorial\n5. Cerrar Sesión\n6. Salir");
         }   
         
     }
@@ -307,6 +308,25 @@ public class Pages {
         // Aquí verificaría la cuenta bancaria si el programa pudiera acceder a estados de cuenta bacarios
         return true;
         
+    }
+
+    public static void Contact(List<Producto> productos, List<Vendedor> sellers) {
+        System.out.println("Pago realizado");
+        System.out.println("Contacto con los vendedores: ");
+        for (Producto p : productos) {
+            for (Vendedor v: sellers) {
+                if (v.getId() == p.getIdVendedor()) {
+                    System.out.println("Email: " + v.getEmail());
+                }
+            }
+        }
+    }
+
+    public static void Tutorial() {
+        System.out.println("Tutorial de uso");
+        System.out.println("Este marketplace es intuitivo de usar, solamente debes navegar entre las opciones disponibles y estas te llevaran a diferentes páginas.");
+        System.out.println("Cada página tiene una función particular, y te permite interactuar con las funcionalidades del Marketplace");
+        System.out.println("Adelante, explora y averigua por ti mismo el potencial de esta aplicación");
     }
 }
 
