@@ -12,7 +12,20 @@ import java.sql.SQLException;
 public class Server {
     private static Connection connection;
 
-    //TODO: Añadir método para conectarse al servidor
+    public static Connection getConnection() {
+        if (connection == null) {
+            try {
+                // Carga el controlador para la base de datos
+                Class.forName("com.mysql.cj.jdbc.Driver");
+
+                // Establece la conexión con la base de datos, obteniendo el url, usuario y contraseña
+                connection = DriverManager.getConnection("jdbc:mysql://tu-base-de-datos-remota:3306/tu-base-de-datos", "usuario", "contrasena");
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return connection;
+    }
 
     //TODO: Añadir método para consultar datos al servidor
 
