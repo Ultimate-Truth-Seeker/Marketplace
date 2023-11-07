@@ -1,5 +1,6 @@
 package Marketplace;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,6 +18,10 @@ public class Marketplace {
         List<Producto> products = new ArrayList<>();
         List<Orden> orders = new ArrayList<>();
         List<Vendedor> vendedors = new ArrayList<>();
+
+        try {
+            // Realizar operaciones de base de datos
+
 
         Scanner s;
         while (Run) {
@@ -148,7 +153,17 @@ public class Marketplace {
                 }
                 
             }
-        }
-       
+         catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        
+        } 
     }
 }
