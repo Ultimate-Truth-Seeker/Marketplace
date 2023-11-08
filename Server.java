@@ -1,8 +1,11 @@
 package Marketplace;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Clase para métodos que trabajan conexiones con el servidor
@@ -32,6 +35,28 @@ public class Server {
     }
 
     //TODO: Añadir método para consultar datos al servidor
+     public static ArrayList<Usuario> getUsuarios(String query){
+        Statement st = null;
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+        try {
+            st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                Usuario aux = new Usuario();
+                aux.setId(rs.getInt("id"));
+                aux.setNombre(rs.getString("nombre"));
+                aux.setNombreUsuario(rs.getString("nombreUsuario"));
+                aux.setContraseña(rs.getString("contrasena"));
+                aux.setEmail(rs.getString("email"));
+                aux.setEsVendedor(Boolean.parseBoolean(rs.getString("esVendedor")));
+               usuarios.add(aux);
+            }
+        } catch (SQLException e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+        return usuarios;
+    }
 
     //TODO: Añadir método para añadir datos al servidor
     
