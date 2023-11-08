@@ -11,6 +11,9 @@ import java.sql.SQLException;
  */
 public class Server {
     private static Connection connection;
+    private static String nameDB = "marketplace";
+    private static String user = "usuario";
+    private static String pass = "contrasena";
 
     public static Connection getConnection() {
         if (connection == null) {
@@ -19,7 +22,8 @@ public class Server {
                 Class.forName("com.mysql.cj.jdbc.Driver");
 
                 // Establece la conexión con la base de datos, obteniendo el url, usuario y contraseña
-                connection = DriverManager.getConnection("jdbc:mysql://tu-base-de-datos-remota:3306/tu-base-de-datos", "usuario", "contrasena");
+                String url = String.format("jdbc:mysql://localhost:3306/%s",nameDB);
+                connection = DriverManager.getConnection(url, user, pass);
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
