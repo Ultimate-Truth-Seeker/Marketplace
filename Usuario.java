@@ -13,6 +13,10 @@ public class Usuario {
     private List<Orden> compras;
     private boolean esVendedor;
 
+    public Usuario(){
+        
+    }
+
     public Usuario(int id, String nombre, String nombreUsuario, String contraseña, String email, boolean esVendedor) {
         this.id = id;
         this.nombre = nombre;
