@@ -52,13 +52,34 @@ public class Server {
                usuarios.add(aux);
             }
         } catch (SQLException e) {
-            System.err.println("Got an exception! ");
+            System.err.println("Hay un error ");
             System.err.println(e.getMessage());
         }
         return usuarios;
     }
 
     //TODO: Añadir método para añadir datos al servidor
+
+    public static int agregarUsuario(Usuario usuario){
+        String values = "";
+        String query = "INSERT INTO usuario (nombre, nombreUsuario, contrasena, email, esVendedor)" ;
+        int insertados = 0;
+        try {
+            values = String.format("VALUES ('%s','%s','%s','%s',%s)",
+                    usuario.getNombre(),
+                    usuario.getNombreUsuario(),
+                    usuario.getContraseña(),
+                    usuario.getEmail(),
+                    usuario.isEsVendedor());
+            query = String.format("%s %s",query,values);
+            Statement st = connection.createStatement();
+            insertados = st.executeUpdate(query);
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+        return insertados;
+    }
     
     //TODO: Añadir método para modificar datos al servidor
     
