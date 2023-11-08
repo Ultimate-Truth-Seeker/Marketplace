@@ -83,6 +83,28 @@ public class Server {
     
     //TODO: Añadir método para modificar datos al servidor
     
+    public static int modificarUsuario(Usuario usuario){
+        String set = "";
+        String query = "UPDATE usuario SET ";
+        int modificados = 0;
+        try {
+            set = String.format("nombre='%s', nombreUsuario='%s', contrasena='%s', email='%s', esVendedor=%s WHERE id=%d",
+                    usuario.getNombre(),
+                    usuario.getNombreUsuario(),
+                    usuario.getContraseña(),
+                    usuario.getEmail(),
+                    usuario.isEsVendedor(),
+                    usuario.getId());
+            query = String.format("%s %s",query,set);
+            Statement st = connection.createStatement();
+            modificados = st.executeUpdate(query);
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+        return modificados;
+    }
+    
     //TODO: Añadir método para eliminar datos al servidor
 
 }
