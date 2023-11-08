@@ -107,4 +107,18 @@ public class Server {
     
     //TODO: Añadir método para eliminar datos al servidor
 
+    public static int eliminarUsuario(int id){
+        String query = "DELETE FROM usuario WHERE id=%d";
+        int eliminados = 0;
+        try {
+            query = String.format(query, id);
+            Statement st = connection.createStatement();
+            eliminados = st.executeUpdate(query);
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+        return eliminados;
+    }
+
 }
