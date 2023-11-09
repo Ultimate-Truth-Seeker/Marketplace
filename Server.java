@@ -152,7 +152,32 @@ public class Server {
     return insertados;
 }
 
+    //Añadir método para agregar datos a la tabla Orden
 
-
-
+    public static int eliminarOrden(int idOrden) {
+        String query = "DELETE FROM Orden WHERE Id = ?";
+        int eliminados = 0;
+    
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, idOrden);
+    
+            eliminados = pstmt.executeUpdate();
+    
+            if (eliminados > 0) {
+                System.out.println("Se ha eliminado la orden con éxito.");
+            } else {
+                System.err.println("No se encontró ninguna orden con ese ID.");
+            }
+    
+            pstmt.close();
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+    
+        return eliminados;
+    }
+    
+    
 }
