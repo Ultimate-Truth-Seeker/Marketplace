@@ -106,7 +106,7 @@ public class Server {
         return modificados;
     }
     
-    //TODO: Añadir método para eliminar datos al servidor
+    //Añadir método para eliminar datos al servidor
 
     public static int eliminarUsuario(int id){
         String query = "DELETE FROM usuario WHERE id=%d";
@@ -171,9 +171,36 @@ public class Server {
         return modificados;
     }
 
-
-
+    public static int agregarProducto(Producto producto) {
+        String query = "INSERT INTO Producto (Id, Nombre, Precio, Cantidad, Descripcion, IdVendedor) VALUES (?, ?, ?, ?, ?, ?)";
+        int insertados = 0;
+    
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, producto.getId());
+            pstmt.setString(2, producto.getNombre());
+            pstmt.setFloat(3, producto.getPrecio());
+            pstmt.setInt(4, producto.getCantidad());
+            pstmt.setString(5, producto.getDescripcion());
+            pstmt.setInt(6, producto.getIdVendedor());
+    
+            insertados = pstmt.executeUpdate();
+    
+            if (insertados > 0) {
+                System.out.println("Se ha agregado el producto con éxito.");
+            } else {
+                System.err.println("Error al agregar el producto.");
+            }
+    
+            pstmt.close();
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+    
+        return insertados;
+    }
     
     }
 
-}
+
