@@ -201,6 +201,31 @@ public class Server {
         return insertados;
     }
     
+        public static int eliminarProducto(int idProducto) {
+        String query = "DELETE FROM Producto WHERE Id = ?";
+        int eliminados = 0;
+    
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, idProducto);
+    
+            eliminados = pstmt.executeUpdate();
+    
+            if (eliminados > 0) {
+                System.out.println("Se ha eliminado el producto con éxito.");
+            } else {
+                System.err.println("No se encontró ningún producto con ese ID.");
+            }
+    
+            pstmt.close();
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+    
+        return eliminados;
+    }
+
     }
 
 
