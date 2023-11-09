@@ -1,4 +1,4 @@
-package Marketplace;
+//package Marketplace;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -125,7 +125,7 @@ public class Server {
     //Añadir método para agregar datos a la tabla Orden
 
     public static int agregarOrden(int id, int idUsuario, String productos, boolean reserva) {
-    String query = "INSERT INTO Orden (Id, IdUsuario, Productos, Reserva) VALUES (?, ?, ?, ?)";
+    String query = "INSERT INTO Orden (Id, IdUsuario, Productos, Reserva) VALUES ('%s','%s','%s','%s')";
     int insertados = 0;
 
     try {
@@ -172,7 +172,7 @@ public class Server {
     }
 
     public static int agregarProducto(Producto producto) {
-        String query = "INSERT INTO Producto (Id, Nombre, Precio, Cantidad, Descripcion, IdVendedor) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Producto (Id, Nombre, Precio, Cantidad, Descripcion, IdVendedor) VALUES ('%s','%s','%s','%s','%s','%s')";
         int insertados = 0;
     
         try {
