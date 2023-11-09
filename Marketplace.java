@@ -94,6 +94,7 @@ public class Marketplace {
                                 }
                                 Pages.ConfigStore(vendedors, products, logedVendedor, s);
                             }
+                            Server.modificarUsuario(users.get(logedUser));
                             break;
                         case 3:
                             Pages.Cart(users.get(logedUser).getCarrito());
@@ -147,6 +148,7 @@ public class Marketplace {
                         Usuario newuser = Pages.Register(s, users);
                         if (newuser != null) {
                             users.add(newuser);
+                            Server.agregarUsuario(newuser);
                         }
                     } else if (op == 3) {
                         Run = false;
