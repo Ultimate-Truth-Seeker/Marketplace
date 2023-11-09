@@ -1,8 +1,9 @@
-//package Marketplace;
+package Marketplace;
 
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -105,7 +106,7 @@ public class Server {
         return modificados;
     }
     
-    //TODO: Añadir método para eliminar datos al servidor
+    //Añadir método para eliminar datos al servidor
 
     public static int eliminarUsuario(int id){
         String query = "DELETE FROM usuario WHERE id=%d";
@@ -121,4 +122,110 @@ public class Server {
         return eliminados;
     }
 
+    //Añadir método para agregar datos a la tabla Orden
+
+    public static int agregarOrden(int id, int idUsuario, String productos, boolean reserva) {
+    String query = "INSERT INTO Orden (Id, IdUsuario, Productos, Reserva) VALUES (?, ?, ?, ?)";
+    int insertados = 0;
+
+    try {
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setInt(1, id);
+        pstmt.setInt(2, idUsuario);
+        pstmt.setString(3, productos);
+        pstmt.setBoolean(4, reserva);
+
+        insertados = pstmt.executeUpdate();
+
+        if (insertados > 0) {
+            System.out.println("Se ha insertado la orden con éxito.");
+        } else {
+            System.err.println("Error al insertar la orden.");
+        }
+
+        pstmt.close();
+    } catch (SQLException e) {
+        System.err.println("Hay un error");
+        System.err.println(e.getMessage());
+    }
+
+    return insertados;
 }
+
+    public static int modificarOrden(Orden orden){
+        String set = "";
+        String query = "UPDATE orden SET ";
+        int modificados = 0;
+        try {
+            set = String.format("idUsuario='%s', isReserva='%s' WHERE id=%d",
+                    orden.getIdUsuario(),
+                    orden.isReserva(),
+                    orden.getId());
+            query = String.format("%s %s",query,set);
+            Statement st = connection.createStatement();
+            modificados = st.executeUpdate(query);
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+        return modificados;
+    }
+
+    public static int agregarProducto(Producto producto) {
+        String query = "INSERT INTO Producto (Id, Nombre, Precio, Cantidad, Descripcion, IdVendedor) VALUES (?, ?, ?, ?, ?, ?)";
+        int insertados = 0;
+    
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, producto.getId());
+            pstmt.setString(2, producto.getNombre());
+            pstmt.setFloat(3, producto.getPrecio());
+            pstmt.setInt(4, producto.getCantidad());
+            pstmt.setString(5, producto.getDescripcion());
+            pstmt.setInt(6, producto.getIdVendedor());
+    
+            insertados = pstmt.executeUpdate();
+    
+            if (insertados > 0) {
+                System.out.println("Se ha agregado el producto con éxito.");
+            } else {
+                System.err.println("Error al agregar el producto.");
+            }
+    
+            pstmt.close();
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+    
+        return insertados;
+    }
+    
+        public static int eliminarProducto(int idProducto) {
+        String query = "DELETE FROM Producto WHERE Id = ?";
+        int eliminados = 0;
+    
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, idProducto);
+    
+            eliminados = pstmt.executeUpdate();
+    
+            if (eliminados > 0) {
+                System.out.println("Se ha eliminado el producto con éxito.");
+            } else {
+                System.err.println("No se encontró ningún producto con ese ID.");
+            }
+    
+            pstmt.close();
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+    
+        return eliminados;
+    }
+
+    }
+
+
