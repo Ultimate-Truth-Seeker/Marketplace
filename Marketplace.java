@@ -1,5 +1,6 @@
-package Marketplace;
+//package Marketplace;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +22,10 @@ public class Marketplace {
         List<Producto> products = new ArrayList<>();
         List<Orden> orders = new ArrayList<>();
         List<Vendedor> vendedors = new ArrayList<>();
-
+        Connection connection = Server.getConnection();
         try {
             Scanner s;
+            users = Server.getUsuarios(null);
             while (Run) {
                 s = new Scanner(System.in);
                 Pages.Home(logedin);
@@ -153,7 +155,7 @@ public class Marketplace {
                     }
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
