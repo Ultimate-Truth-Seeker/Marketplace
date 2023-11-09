@@ -1,4 +1,4 @@
-//package Marketplace;
+package Marketplace;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -152,7 +152,28 @@ public class Server {
     return insertados;
 }
 
+    public static int modificarOrden(Orden orden){
+        String set = "";
+        String query = "UPDATE orden SET ";
+        int modificados = 0;
+        try {
+            set = String.format("idUsuario='%s', isReserva='%s' WHERE id=%d",
+                    orden.getIdUsuario(),
+                    orden.isReserva(),
+                    orden.getId());
+            query = String.format("%s %s",query,set);
+            Statement st = connection.createStatement();
+            modificados = st.executeUpdate(query);
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+        return modificados;
+    }
 
 
+
+    
+    }
 
 }
