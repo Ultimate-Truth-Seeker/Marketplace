@@ -30,6 +30,22 @@ public class Vendedor extends Usuario{
         this.productos =  new ArrayList<Producto>();
     }
 
+    public static Vendedor crearVendedor() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el ID del vendedor:");
+        int id = scanner.nextInt();
+        System.out.println("Ingrese el nombre del vendedor:");
+        String nombre = scanner.next();
+        System.out.println("Ingrese el nombre de usuario del vendedor:");
+        String nombreUsuario = scanner.next();
+        System.out.println("Ingrese la contraseña del vendedor:");
+        String contraseña = scanner.next();
+        System.out.println("Ingrese el email del vendedor:");
+        String email = scanner.next();
+        System.out.println("Ingrese la cuenta de depósito del vendedor:");
+        int cuentaDeDeposito = scanner.nextInt();
+    }
+
     public void crearProducto(Producto producto){
         this.productos.add(producto);
     }
