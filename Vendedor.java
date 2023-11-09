@@ -44,6 +44,12 @@ public class Vendedor extends Usuario{
         String email = scanner.next();
         System.out.println("Ingrese la cuenta de depósito del vendedor:");
         int cuentaDeDeposito = scanner.nextInt();
+        
+        Usuario usuario = new Usuario(id, nombre, nombreUsuario, contraseña, email, true);
+        Vendedor vendedor = new Vendedor(cuentaDeDeposito, usuario);
+        
+        return vendedor;
+        
     }
 
     public void crearProducto(Producto producto){
