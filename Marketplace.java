@@ -1,4 +1,4 @@
-//package Marketplace;
+package Marketplace;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -93,6 +93,7 @@ public class Marketplace {
                                     }
                                 }
                                 Pages.ConfigStore(vendedors, products, logedVendedor, s);
+                                
                             }
                             Server.modificarUsuario(users.get(logedUser));
                             break;
@@ -110,6 +111,7 @@ public class Marketplace {
                                     }
                                     Orden compra = new Orden(max + 1, users.get(logedUser).getId(), users.get(logedUser).getCarrito(), true);
                                     orders.add(compra);
+                                    Server.agregarOrden(op, logedUser, null, logedin);
                                     users.get(logedUser).añadirCompra(compra);
 
                                     Pages.Contact(users.get(logedUser).getCarrito(), vendedors);

@@ -170,6 +170,31 @@ public class Server {
         }
         return modificados;
     }
+    public static int eliminarOrden(int idOrden) {
+        String query = "DELETE FROM Orden WHERE Id = ?";
+        int eliminados = 0;
+
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, idOrden);
+
+            eliminados = pstmt.executeUpdate();
+
+            if (eliminados > 0) {
+                System.out.println("Se ha eliminado la orden con éxito.");
+            } else {
+                System.err.println("No se encontró ninguna orden con ese ID.");
+            }
+
+            pstmt.close();
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+
+        return eliminados;
+    }
+
 
     public static int agregarProducto(Producto producto) {
         String query = "INSERT INTO Producto (Id, Nombre, Precio, Cantidad, Descripcion, IdVendedor) VALUES ('%s','%s','%s','%s','%s','%s')";
@@ -199,6 +224,27 @@ public class Server {
         }
     
         return insertados;
+    }
+    public static int modificarProducto(Producto producto){
+        String set = "";
+        String query = "UPDATE producto SET ";
+        int modificados = 0;
+        try {
+            set = String.format("nombre='%s', precio='%s', cantidad='%s', descripcion='%s', idVendedor='%s' WHERE id=%d",
+                    producto.getNombre(),
+                    producto.getPrecio(),
+                    producto.getCantidad(),
+                    producto.getDescripcion(),
+                    producto.getIdVendedor(),
+                    producto.getId());
+            query = String.format("%s %s",query,set);
+            Statement st = connection.createStatement();
+            modificados = st.executeUpdate(query);
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+        return modificados;
     }
     
         public static int eliminarProducto(int idProducto) {
