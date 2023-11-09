@@ -3,6 +3,7 @@
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -120,5 +121,38 @@ public class Server {
         }
         return eliminados;
     }
+
+    //Añadir método para agregar datos a la tabla Orden
+
+    public static int agregarOrden(int id, int idUsuario, String productos, boolean reserva) {
+    String query = "INSERT INTO Orden (Id, IdUsuario, Productos, Reserva) VALUES (?, ?, ?, ?)";
+    int insertados = 0;
+
+    try {
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setInt(1, id);
+        pstmt.setInt(2, idUsuario);
+        pstmt.setString(3, productos);
+        pstmt.setBoolean(4, reserva);
+
+        insertados = pstmt.executeUpdate();
+
+        if (insertados > 0) {
+            System.out.println("Se ha insertado la orden con éxito.");
+        } else {
+            System.err.println("Error al insertar la orden.");
+        }
+
+        pstmt.close();
+    } catch (SQLException e) {
+        System.err.println("Hay un error");
+        System.err.println(e.getMessage());
+    }
+
+    return insertados;
+}
+
+
+
 
 }
