@@ -35,7 +35,7 @@ public class Server {
         return connection;
     }
 
-    //TODO: Añadir método para consultar datos al servidor
+    //Añadir método para consultar datos al servidor
      public static ArrayList<Usuario> getUsuarios(String query){
         Statement st = null;
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
@@ -59,7 +59,7 @@ public class Server {
         return usuarios;
     }
 
-    //TODO: Añadir método para añadir datos al servidor
+    // Añadir método para añadir datos al servidor
 
     public static int agregarUsuario(Usuario usuario){
         String values = "";
@@ -82,7 +82,7 @@ public class Server {
         return insertados;
     }
     
-    //TODO: Añadir método para modificar datos al servidor
+    // Añadir método para modificar datos al servidor
     
     public static int modificarUsuario(Usuario usuario){
         String set = "";
