@@ -25,7 +25,10 @@ public class Marketplace {
         Connection connection = Server.getConnection();
         try {
             Scanner s;
+            try {
             users = Server.getUsuarios(null);
+            } catch (Exception e){
+            }
             while (Run) {
                 s = new Scanner(System.in);
                 Pages.Home(logedin);
@@ -95,7 +98,10 @@ public class Marketplace {
                                 Pages.ConfigStore(vendedors, products, logedVendedor, s);
                                 
                             }
+                            try {
                             Server.modificarUsuario(users.get(logedUser));
+                            } catch (Exception e){
+                }
                             break;
                         case 3:
                             Pages.Cart(users.get(logedUser).getCarrito());
@@ -111,7 +117,10 @@ public class Marketplace {
                                     }
                                     Orden compra = new Orden(max + 1, users.get(logedUser).getId(), users.get(logedUser).getCarrito(), true);
                                     orders.add(compra);
+                                    try {
                                     Server.agregarOrden(op, logedUser, null, logedin);
+                                    } catch (Exception e){
+            }
                                     users.get(logedUser).añadirCompra(compra);
 
                                     Pages.Contact(users.get(logedUser).getCarrito(), vendedors);
@@ -150,7 +159,10 @@ public class Marketplace {
                         Usuario newuser = Pages.Register(s, users);
                         if (newuser != null) {
                             users.add(newuser);
+                            try {
                             Server.agregarUsuario(newuser);
+                            } catch (Exception e){
+            }
                         }
                     } else if (op == 3) {
                         Run = false;
