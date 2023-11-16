@@ -336,6 +336,8 @@ public class Pages {
         System.out.println("Cada página tiene una función particular, y te permite interactuar con las funcionalidades del Marketplace");
         System.out.println("Adelante, explora y averigua por ti mismo el potencial de esta aplicación");
 
+        // Uso del carrito
+        System.out.println("\nCarrito de compras:\n\nEsta sección enlista los productos para los que has hecho una reserva. De esta manera puedes llevar un registro de los productos que quieras comprar. Cuando decidas hacer la compra de tus productos selecciona la opción de pagar para proceder a la página de compra. También puedes eliminar un producto del carrito de compras si así lo deseas.\n");
 
         // Uso de página de compra
         System.out.println("\nPágina de compra:\n\nEn esta sección te preparas para realizar la compra final de los productos de tu carrito. Se te mostrará un resumen de la factura y el total a pagar. A continuación deberás hacer lo siguiente: \n\n-Ingresaras los datos de tu tarjeta para proceder con el pago.\n-Se te mostrará un mensaje final de confirmación de la compra. Deberás ingresar \"0\" si quieres cancelar la compra. Cualquier otra respuesta confirmará la orden y se efectuará la compra de productos.\n\nProcederás a la página de contacto para comunicarte con el vendedor.\n");
