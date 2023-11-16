@@ -31,6 +31,10 @@ public class Server {
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
+            catch(Exception e){
+                System.err.println("Error desconocido");
+                System.err.println(e.getMessage());
+            }
         }
         return connection;
     }
