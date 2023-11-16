@@ -336,6 +336,9 @@ public class Pages {
         System.out.println("Cada página tiene una función particular, y te permite interactuar con las funcionalidades del Marketplace");
         System.out.println("Adelante, explora y averigua por ti mismo el potencial de esta aplicación");
 
+        // Uso del menú principal
+        System.out.println("\nMenú principal:\n\nAquí es donde seleccionarás la opción que desees realizar\nEn caso que estés sin iniciar sesión, podrás iniciar o salir.\nPor otro lado, si ya estás con tu sesión activa, podrás navegar por todas las opciones que brinda el marketplace.\nProcura seleccionar alguna opción de las que se despliegan, de lo contrario, no podrás acceder a ninguna opción\n");
+
         // Uso del carrito
         System.out.println("\nCarrito de compras:\n\nEsta sección enlista los productos para los que has hecho una reserva. De esta manera puedes llevar un registro de los productos que quieras comprar. Cuando decidas hacer la compra de tus productos selecciona la opción de pagar para proceder a la página de compra. También puedes eliminar un producto del carrito de compras si así lo deseas.\n");
 
