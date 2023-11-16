@@ -40,7 +40,7 @@ public class Server {
     }
 
     //Añadir método para consultar datos al servidor
-     public static ArrayList<Usuario> getUsuarios(String query){
+    public static ArrayList<Usuario> getUsuarios(String query){
         Statement st = null;
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
         try {
@@ -60,6 +60,10 @@ public class Server {
             System.err.println("Hay un error ");
             System.err.println(e.getMessage());
         }
+        catch(Exception e){
+                System.err.println("Error desconocido");
+                System.err.println(e.getMessage());
+            }
         return usuarios;
     }
 
@@ -83,6 +87,10 @@ public class Server {
             System.err.println("Hay un error");
             System.err.println(e.getMessage());
         }
+        catch(Exception e){
+                System.err.println("Error desconocido");
+                System.err.println(e.getMessage());
+            }
         return insertados;
     }
     
@@ -107,6 +115,10 @@ public class Server {
             System.err.println("Hay un error");
             System.err.println(e.getMessage());
         }
+        catch(Exception e){
+            System.err.println("Error desconocido");
+            System.err.println(e.getMessage());
+        }
         return modificados;
     }
     
@@ -123,38 +135,46 @@ public class Server {
             System.err.println("Hay un error");
             System.err.println(e.getMessage());
         }
+        catch(Exception e){
+            System.err.println("Error desconocido");
+            System.err.println(e.getMessage());
+        }
         return eliminados;
     }
 
     //Añadir método para agregar datos a la tabla Orden
 
     public static int agregarOrden(int id, int idUsuario, String productos, boolean reserva) {
-    String query = "INSERT INTO Orden (Id, IdUsuario, Productos, Reserva) VALUES ('%s','%s','%s','%s')";
-    int insertados = 0;
+        String query = "INSERT INTO Orden (Id, IdUsuario, Productos, Reserva) VALUES ('%s','%s','%s','%s')";
+        int insertados = 0;
 
-    try {
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setInt(1, id);
-        pstmt.setInt(2, idUsuario);
-        pstmt.setString(3, productos);
-        pstmt.setBoolean(4, reserva);
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, id);
+            pstmt.setInt(2, idUsuario);
+            pstmt.setString(3, productos);
+            pstmt.setBoolean(4, reserva);
 
-        insertados = pstmt.executeUpdate();
+            insertados = pstmt.executeUpdate();
 
-        if (insertados > 0) {
-            System.out.println("Se ha insertado la orden con éxito.");
-        } else {
-            System.err.println("Error al insertar la orden.");
+            if (insertados > 0) {
+                System.out.println("Se ha insertado la orden con éxito.");
+            } else {
+                System.err.println("Error al insertar la orden.");
+            }
+
+            pstmt.close();
+        } catch (SQLException e) {
+            System.err.println("Hay un error");
+            System.err.println(e.getMessage());
         }
+        catch(Exception e){
+            System.err.println("Error desconocido");
+                System.err.println(e.getMessage());
+            }
 
-        pstmt.close();
-    } catch (SQLException e) {
-        System.err.println("Hay un error");
-        System.err.println(e.getMessage());
+        return insertados;
     }
-
-    return insertados;
-}
 
     public static int modificarOrden(Orden orden){
         String set = "";
@@ -170,6 +190,10 @@ public class Server {
             modificados = st.executeUpdate(query);
         } catch (SQLException e) {
             System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+        catch(Exception e){
+            System.err.println("Error desconocido");
             System.err.println(e.getMessage());
         }
         return modificados;
@@ -195,7 +219,10 @@ public class Server {
             System.err.println("Hay un error");
             System.err.println(e.getMessage());
         }
-
+        catch(Exception e){
+            System.err.println("Error desconocido");
+            System.err.println(e.getMessage());
+        }
         return eliminados;
     }
 
@@ -226,6 +253,10 @@ public class Server {
             System.err.println("Hay un error");
             System.err.println(e.getMessage());
         }
+        catch(Exception e){
+            System.err.println("Error desconocido");
+            System.err.println(e.getMessage());
+        }
     
         return insertados;
     }
@@ -248,10 +279,14 @@ public class Server {
             System.err.println("Hay un error");
             System.err.println(e.getMessage());
         }
+        catch(Exception e){
+            System.err.println("Error desconocido");
+            System.err.println(e.getMessage());
+        }
         return modificados;
     }
     
-        public static int eliminarProducto(int idProducto) {
+    public static int eliminarProducto(int idProducto) {
         String query = "DELETE FROM Producto WHERE Id = ?";
         int eliminados = 0;
     
@@ -270,6 +305,10 @@ public class Server {
             pstmt.close();
         } catch (SQLException e) {
             System.err.println("Hay un error");
+            System.err.println(e.getMessage());
+        }
+        catch(Exception e){
+            System.err.println("Error desconocido");
             System.err.println(e.getMessage());
         }
     
