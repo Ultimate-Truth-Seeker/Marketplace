@@ -18,6 +18,7 @@ public class Pages {
         }
         System.out.println("Bienvenido al Marketplace");
         if (!logedin){
+            //TODO: cambiar mensaje de menú para incluir las opciones añadidas
             System.out.println("Seleccione una opción: \n1. Iniciar sesión\n2. Registrarse\n3. Salir");
         }
         else {
@@ -329,10 +330,16 @@ public class Pages {
     }
 
     public static void Tutorial() {
+        //TODO: mejorar tutorial
         System.out.println("Tutorial de uso");
         System.out.println("Este marketplace es intuitivo de usar, solamente debes navegar entre las opciones disponibles y estas te llevaran a diferentes páginas.");
         System.out.println("Cada página tiene una función particular, y te permite interactuar con las funcionalidades del Marketplace");
         System.out.println("Adelante, explora y averigua por ti mismo el potencial de esta aplicación");
+
+
+        // Uso de página de compra
+        System.out.println("\nPágina de compra:\n\nEn esta sección te preparas para realizar la compra final de los productos de tu carrito. Se te mostrará un resumen de la factura y el total a pagar. A continuación deberás hacer lo siguiente: \n\n-Ingresaras los datos de tu tarjeta para proceder con el pago.\n-Se te mostrará un mensaje final de confirmación de la compra. Deberás ingresar \"0\" si quieres cancelar la compra. Cualquier otra respuesta confirmará la orden y se efectuará la compra de productos.\n\nProcederás a la página de contacto para comunicarte con el vendedor.\n");
+        
     }
 }
 
