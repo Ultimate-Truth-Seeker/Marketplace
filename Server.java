@@ -29,7 +29,7 @@ public class Server {
                 String url = String.format("jdbc:mysql://localhost:3306/%s",nameDB);
                 connection = DriverManager.getConnection(url, user, pass);
             } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
             catch(Exception e){
                 System.err.println("Error desconocido");
