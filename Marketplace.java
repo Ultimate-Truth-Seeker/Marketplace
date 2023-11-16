@@ -172,10 +172,10 @@ public class Marketplace {
                         }
                     } else if (op == 3) {
                         //TODO: añaadir opción de tutorial
-                        break;
+                        
                     } else if (op == 4) {
                         //TODO: añadir opción de búsqueda de producto
-                        break;
+                        
                     } else if (op == 5) {
                         Run = false;
                         s.close();
