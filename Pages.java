@@ -339,6 +339,9 @@ public class Pages {
         // Uso del menú principal
         System.out.println("\nMenú principal:\n\nAquí es donde seleccionarás la opción que desees realizar\nEn caso que estés sin iniciar sesión, podrás iniciar o salir.\nPor otro lado, si ya estás con tu sesión activa, podrás navegar por todas las opciones que brinda el marketplace.\nProcura seleccionar alguna opción de las que se despliegan, de lo contrario, no podrás acceder a ninguna opción\n");
 
+        // Uso de la configuración del usuario
+        System.out.println("\nConfiguración del usuario\nLa configuración de tu cuenta, te dará la opción de cambiar tu nombre, nombre de usuario, email y contraseña.\nLa configuración variará un poco dependiendo de si es que eres un usuario normal, o si eres un vendedor.\nEn caso de ser un usuario, te dará la opción de convertirte en vendedor.\nPor otro lado, si eres vendeedor, puedes ver la configuración de tus productos.\nPor favor tomar en cuenta que si ingresa algún valor inválido, no hará nada hasta que selecciones una opción válida.\n");
+
         // Uso del carrito
         System.out.println("\nCarrito de compras:\n\nEsta sección enlista los productos para los que has hecho una reserva. De esta manera puedes llevar un registro de los productos que quieras comprar. Cuando decidas hacer la compra de tus productos selecciona la opción de pagar para proceder a la página de compra. También puedes eliminar un producto del carrito de compras si así lo deseas.\n");
 
