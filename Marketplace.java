@@ -1,4 +1,4 @@
-package Marketplace;
+//package Marketplace;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,12 +22,18 @@ public class Marketplace {
         List<Producto> products = new ArrayList<>();
         List<Orden> orders = new ArrayList<>();
         List<Vendedor> vendedors = new ArrayList<>();
-        Connection connection = Server.getConnection();
+        Connection connection = null;
+        try {
+            connection = Server.getConnection();
+        } catch (Exception e) {
+
+        }
         try {
             Scanner s;
             try {
             users = Server.getUsuarios(null);
             } catch (Exception e){
+                
             }
             while (Run) {
                 s = new Scanner(System.in);
