@@ -171,7 +171,7 @@ public class Marketplace {
             }
                         }
                     } else if (op == 3) {
-                        //TODO: añaadir opción de tutorial
+                        Pages.Tutorial();
                         
                     } else if (op == 4) {
                         //TODO: añadir opción de búsqueda de producto
