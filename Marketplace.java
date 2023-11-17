@@ -174,7 +174,52 @@ public class Marketplace {
                         Pages.Tutorial();
                         
                     } else if (op == 4) {
-                        //TODO: añadir opción de búsqueda de producto
+                                                    Pages.Search();
+                            s.nextLine();
+                            String Query = s.nextLine();
+                            Pages.SearchResults(Query, products);
+                            int choice = s.nextInt();
+                            if (choice == 0) {
+                                break;
+                            }
+
+                            for (Producto p : products) {
+                                if (p.getId() == choice) {
+                                    Pages.ProductPage(p);
+                                    int amount = s.nextInt();
+                                    while (true) {
+                                        if (amount <= 0) {
+                                            Pages.PPageMessage(amount);
+                                            break;
+                                        }
+                                        if (amount <= p.getCantidad()) {
+                                            boolean extra = false;
+                                            for (Producto cp : users.get(logedUser).getCarrito()) {
+                                                if (cp.getId() == p.getId()) {
+                                                    users.get(logedUser).getCarrito().get(users.get(logedUser).getCarrito().indexOf(cp)).setCantidad(users.get(logedUser).getCarrito().get(users.get(logedUser).getCarrito().indexOf(cp)).getCantidad() + amount);
+                                                    extra = true;
+                                                }
+                                            }
+                                            if (!extra) {
+                                                users.get(logedUser).añadirAlCarrito(new Producto(p.getId(), p.getNombre(), p.getPrecio(), amount, p.getDescripcion(), p.getIdVendedor()));
+                                            }
+                                            for (Vendedor v : vendedors) {
+                                                if (v.getId() == p.getIdVendedor()) {
+                                                    vendedors.get(vendedors.indexOf(v)).getProductos().get(vendedors.get(vendedors.indexOf(v)).getProductos().indexOf(p)).setCantidad(vendedors.get(vendedors.indexOf(v)).getProductos().get(vendedors.get(vendedors.indexOf(v)).getProductos().indexOf(p)).getCantidad() - amount);
+                                                }
+                                            }
+                                            products.get(products.indexOf(p)).setCantidad(p.getCantidad() - amount);
+
+                                            Pages.PPageMessage(amount);
+                                            break;
+                                        }
+                                        amount = s.nextInt();
+                                    }
+                                    break;
+                                }
+                            }
+
+                            break;
                         
                     } else if (op == 5) {
                         Run = false;
