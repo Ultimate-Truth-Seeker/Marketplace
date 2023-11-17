@@ -110,7 +110,6 @@ public class Pages {
             }
         }
         System.out.println("Ingrese el id del producto que desee ver, o 0 para regresar ");
-
     }
 
     public static void ProductPage(Producto producto) {
@@ -340,7 +339,10 @@ public class Pages {
         System.out.println("\nMenú principal:\n\nAquí es donde seleccionarás la opción que desees realizar\nEn caso que estés sin iniciar sesión, podrás iniciar o salir.\nPor otro lado, si ya estás con tu sesión activa, podrás navegar por todas las opciones que brinda el marketplace.\nProcura seleccionar alguna opción de las que se despliegan, de lo contrario, no podrás acceder a ninguna opción\n");
 
         // Uso de la configuración del usuario
-        System.out.println("\nConfiguración del usuario\nLa configuración de tu cuenta, te dará la opción de cambiar tu nombre, nombre de usuario, email y contraseña.\nLa configuración variará un poco dependiendo de si es que eres un usuario normal, o si eres un vendedor.\nEn caso de ser un usuario, te dará la opción de convertirte en vendedor.\nPor otro lado, si eres vendeedor, puedes ver la configuración de tus productos.\nPor favor tomar en cuenta que si ingresa algún valor inválido, no hará nada hasta que selecciones una opción válida.\n");
+        System.out.println("\nConfiguración del usuario:\nLa configuración de tu cuenta, te dará la opción de cambiar tu nombre, nombre de usuario, email y contraseña.\nLa configuración variará un poco dependiendo de si es que eres un usuario normal, o si eres un vendedor.\nEn caso de ser un usuario, te dará la opción de convertirte en vendedor.\nPor otro lado, si eres vendeedor, puedes ver la configuración de tus productos.\nPor favor tomar en cuenta que si ingresa algún valor inválido, no hará nada hasta que selecciones una opción válida.\n");
+
+        // Uso búsqueda de producto
+        System.out.println("\nBúsqueda de producto:\nCon esta función serás capaz de buscar el producto que desees.\nEl programa lo buscará entre todos los productos registrados, y en caso que si exista, lo mostrará junto a su ID.\nEn caso que te arrepientas y desees volver al menú, debes de presionar 0.\n");
 
         // Uso del carrito
         System.out.println("\nCarrito de compras:\n\nEsta sección enlista los productos para los que has hecho una reserva. De esta manera puedes llevar un registro de los productos que quieras comprar. Cuando decidas hacer la compra de tus productos selecciona la opción de pagar para proceder a la página de compra. También puedes eliminar un producto del carrito de compras si así lo deseas.\n");
