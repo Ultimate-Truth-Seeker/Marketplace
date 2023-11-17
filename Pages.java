@@ -19,7 +19,7 @@ public class Pages {
         System.out.println("Bienvenido al Marketplace");
         if (!logedin){
             //TODO: cambiar mensaje de menú para incluir las opciones añadidas
-            System.out.println("Seleccione una opción: \n1. Iniciar sesión\n2. Registrarse\n3. Salir");
+            System.out.println("Seleccione una opción: \n1. Iniciar sesión\n2. Registrarse\n3. Salir\n4.Ver tutorial");
         }
         else {
             System.out.println("Seleccione una opción: \n1.Buscar productos\n2. Configuración\n3. Ver Carrito\n4. Tutorial\n5. Cerrar Sesión\n6. Salir");
