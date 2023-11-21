@@ -15,9 +15,9 @@ import java.util.ArrayList;
  */
 public class Server {
     private static Connection connection;
-    private static String nameDB = "marketplace";
-    private static String user = "usuario";
-    private static String pass = "contrasena";
+    private static String nameDB = "proyectopoo";
+    private static String user = "poo";
+    private static String pass = "secret";
 
     public static Connection getConnection() {
         if (connection == null) {
@@ -26,7 +26,7 @@ public class Server {
                 Class.forName("com.mysql.cj.jdbc.Driver");
 
                 // Establece la conexión con la base de datos, obteniendo el url, usuario y contraseña
-                String url = String.format("jdbc:mysql://localhost:3306/%s",nameDB);
+                String url = String.format("jdbc:mysql://5.161.118.98:33002/%s",nameDB);
                 connection = DriverManager.getConnection(url, user, pass);
             } catch (ClassNotFoundException | SQLException e) {
                 System.err.println(e.getMessage());
@@ -69,20 +69,17 @@ public class Server {
 
     // Añadir método para añadir datos al servidor
 
-    public static int agregarUsuario(Usuario usuario){
-        String values = "";
-        String query = "INSERT INTO usuario (nombre, nombreUsuario, contrasena, email, esVendedor)" ;
-        int insertados = 0;
+    public static boolean agregarUsuario(Usuario usuario){
+        String query = "INSERT INTO usuarios (nombre, nombreUsuario, contrasena, email, esVendedor) values (?,?,?,?,?)" ;
         try {
-            values = String.format("VALUES ('%s','%s','%s','%s',%s)",
-                    usuario.getNombre(),
-                    usuario.getNombreUsuario(),
-                    usuario.getContraseña(),
-                    usuario.getEmail(),
-                    usuario.isEsVendedor());
-            query = String.format("%s %s",query,values);
-            Statement st = connection.createStatement();
-            insertados = st.executeUpdate(query);
+            PreparedStatement preparedStmt = connection.prepareStatement(query);
+            preparedStmt.setString(1, usuario.getNombre());
+            preparedStmt.setString(2, usuario.getNombreUsuario());
+            preparedStmt.setString(3, usuario.getContraseña());
+            preparedStmt.setString(4, usuario.getEmail());
+            preparedStmt.setBoolean(5, usuario.isEsVendedor());
+
+            return preparedStmt.execute();
         } catch (SQLException e) {
             System.err.println("Hay un error");
             System.err.println(e.getMessage());
@@ -91,7 +88,7 @@ public class Server {
                 System.err.println("Error desconocido");
                 System.err.println(e.getMessage());
             }
-        return insertados;
+        return false;
     }
     
     // Añadir método para modificar datos al servidor
