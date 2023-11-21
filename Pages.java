@@ -27,17 +27,16 @@ public class Pages {
         
     }
 
-    public static List<String> Login(Scanner s) {
+    public static boolean Login(Scanner s) {
         System.out.println("Inicio de sesión");
         System.out.println("Nombre de Usuario: ");
         s.nextLine();
         String username = s.nextLine();
         System.out.println("Contraseña: ");
         String password = s.nextLine();
-        List<String> data = new ArrayList<>();
-        data.add(username); data.add(password);
-        return data;
-
+        String query = String.format("SELECT * FROM usuarios where nombreUsuario = '%s' and contrasena = '%s'", username, password);
+        ArrayList<Usuario> users = Server.getUsuarios(query);
+        return users.size() > 0;
     }
 
     public static void Status(boolean logedin) {
@@ -57,14 +56,13 @@ public class Pages {
         while (!out) {
             System.out.println("Nombre de usuario: ");
             username = s.nextLine(); out = true;
-            for (Usuario u : users) {
-                if (u.getNombreUsuario().equals(username)) {
-                    System.out.println("Ese nombre ya existe, elija otro");
-                    out = false;
-                }
-                if (out) {
-                    break;
-                }
+            String query = String.format("SELECT * FROM usuarios where nombreUsuario = '%s'", username);
+
+            ArrayList<Usuario> validar = Server.getUsuarios(query);
+            out = true;
+            if(validar.size() > 0){
+                System.out.println("Ese nombre ya existe, elija otro");
+                out = false;
             }
         }
         System.out.println("Email: ");
@@ -77,18 +75,23 @@ public class Pages {
             if (contraseña.equals(s.nextLine())) {
                 break;
             }
+            else{
+                System.out.println("Las Contraseñas no coinciden!!");
+            }
         }
         System.out.println("¿Confirmar creación de usuario? Ingrese 0 para cancelar");
         if (!s.nextLine().equals("0")) {
-            int max = 0;
-            for (Usuario u: users) {
-                if (u.getId() > max) {
-                    max = u.getId();
-                }
+            Usuario nuevo = new Usuario(nombre, username, contraseña, email, false);
+            boolean res = Server.agregarUsuario(nuevo);
+            if(res){
+                System.err.println("Error al crear usuario");
+                return null;
             }
+
             System.out.println("Creado con éxito!");
-        
-            return new Usuario(max + 1, nombre, username, contraseña, email, false);
+            String query1 = String.format("SELECT * FROM usuarios where nombreUsuario = '%s'", username);
+            var usuarios = Server.getUsuarios(query1);
+            return usuarios.get(0);
         }
         System.out.println("Cancelando...");
         return null;
