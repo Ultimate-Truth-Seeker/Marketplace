@@ -27,6 +27,16 @@ public class Usuario {
         this.compras = new ArrayList<>();
         this.esVendedor = esVendedor;
     }
+
+    public Usuario(String nombre, String nombreUsuario, String contraseña, String email, boolean esVendedor) {
+        this.nombre = nombre;
+        this.nombreUsuario = nombreUsuario;
+        this.contraseña = contraseña;
+        this.email = email;
+        this.carrito = new ArrayList<>();
+        this.compras = new ArrayList<>();
+        this.esVendedor = esVendedor;
+    }
     
     public int getId() {
         return id;
