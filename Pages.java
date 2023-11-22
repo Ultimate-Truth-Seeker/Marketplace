@@ -11,14 +11,16 @@ import java.util.Scanner;
  * @author Grupo de Marketplace de POO
  */
 public class Pages {
-
+    /**
+     * página de inicio
+     * @param logedin cambia el mensaje si hay o no sesión iniciada
+     */
     public static void Home(boolean logedin) {
         if (logedin) {
             System.out.println("Sesión iniciada");
         }
         System.out.println("Bienvenido al Marketplace");
         if (!logedin){
-            //TODO: cambiar mensaje de menú para incluir las opciones añadidas
             System.out.println("Seleccione una opción: \n1. Iniciar sesión\n2. Registrarse\n3. Tutorialr\n4.Buscar productos\n5.Salir");
         }
         else {
@@ -26,8 +28,12 @@ public class Pages {
         }   
         
     }
-
-    public static boolean Login(Scanner s) {
+/**
+ * página de inicio de sesión
+ * @param s escanner para leer el usuario y contraseña
+ * @return verdadero si se logró iniciar sesión
+ */
+    public static ArrayList<Usuario> Login(Scanner s) {
         System.out.println("Inicio de sesión");
         System.out.println("Nombre de Usuario: ");
         s.nextLine();
@@ -36,9 +42,12 @@ public class Pages {
         String password = s.nextLine();
         String query = String.format("SELECT * FROM usuarios where nombreUsuario = '%s' and contrasena = '%s'", username, password);
         ArrayList<Usuario> users = Server.getUsuarios(query);
-        return users.size() > 0;
+        return users;
     }
-
+    /**
+     * mensaje de sesión
+     * @param logedin verdadero si hay sesión activa
+     */
     public static void Status(boolean logedin) {
         if (logedin) {
             System.out.println("Sesión iniciada con éxito!");
@@ -46,7 +55,12 @@ public class Pages {
             System.out.println("Error, usuario o contraseña incorrectos");
         }
     }
-
+    /**
+     * página de registro
+     * @param s scanner de lectura de entrada
+     * @param users listado de usuarios del programa
+     * @return el usuario nuevo registrado
+     */
     public static Usuario Register(Scanner s, List<Usuario> users) {
         System.out.println("Registrese y cree un nuevo usuario");
         System.out.println("Nombre: ");
@@ -332,7 +346,7 @@ public class Pages {
     }
 
     public static void Tutorial() {
-        //TODO: mejorar tutorial
+
         System.out.println("Tutorial de uso");
         System.out.println("Este marketplace es intuitivo de usar, solamente debes navegar entre las opciones disponibles y estas te llevaran a diferentes páginas.");
         System.out.println("Cada página tiene una función particular, y te permite interactuar con las funcionalidades del Marketplace");

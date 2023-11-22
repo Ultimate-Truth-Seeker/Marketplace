@@ -143,6 +143,7 @@ public class Marketplace {
                         case 5:
                             Pages.Logout();
                             logedin = false;
+                            logedUser = -1;
                             break;
                         case 6:
                             Run = false;
@@ -153,7 +154,9 @@ public class Marketplace {
                     }
                 } else {
                     if (op == 1) {
-                        logedin = Pages.Login(s);
+                        users = Pages.Login(s);
+                        logedin = users.size() > 0 ;
+                        logedUser = 0;
                         Pages.Status(logedin);
                     } else if (op == 2) {
                         Usuario newuser = Pages.Register(s, users);
