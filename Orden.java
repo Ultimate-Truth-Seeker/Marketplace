@@ -1,13 +1,22 @@
 //package Marketplace;
 
 import java.util.List;
-
+/**
+ * clase orden para la implementación de ordenes de compra
+ * @author 22 nov 2023
+ */
 public class Orden{
     int Id;
     int IdUsuario;
     List <Producto> Productos;
     boolean Reserva;
-
+    /**
+     * constructor de orden
+     * @param Id
+     * @param IdUsuario
+     * @param Productos
+     * @param Reserva
+     */
     public Orden( int Id, int IdUsuario, List <Producto> Productos, boolean Reserva){
         this.Id = Id;
         this.IdUsuario = IdUsuario;

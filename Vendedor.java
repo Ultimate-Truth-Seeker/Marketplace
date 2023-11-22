@@ -3,11 +3,14 @@
 //Clase vendedor
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * clase vendedor para usuarios que venden productos
+ * @version 22 nov 2023
+ */
 public class Vendedor extends Usuario{
     private int cuentaDeDeposito;
     private  ArrayList<Producto> productos;
-
+    // getters y setters
     public int getCuentaDeDeposito() {
         return cuentaDeDeposito;
     }
@@ -23,13 +26,20 @@ public class Vendedor extends Usuario{
     public void setProductos(ArrayList<Producto> productos) {
         this.productos = productos;
     }
-
+    /**
+     * constructor de vendedor
+     * @param cuentaDeDeposito
+     * @param u
+     */
     public Vendedor(int cuentaDeDeposito, Usuario u){
         super(u.getId(), u.getNombre(), u.getNombreUsuario(), u.getContraseña(), u.getEmail(), u.isEsVendedor());
         this.cuentaDeDeposito = cuentaDeDeposito;
         this.productos =  new ArrayList<Producto>();
     }
-
+    /**
+     * método especial para la creación de vendedores
+     * @return vendedor creado
+     */
     public static Vendedor crearVendedor() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese el ID del vendedor:");
@@ -51,11 +61,17 @@ public class Vendedor extends Usuario{
         return vendedor;
         
     }
-
+    /**
+     * añade productos de vendedor
+     * @param producto
+     */
     public void crearProducto(Producto producto){
         this.productos.add(producto);
     }
-
+    /**
+     * eleimina productos del vendedor
+     * @param producto
+     */
     public void eliminarProducto(Producto producto){
         for(int i=0; i<productos.size(); i++){
             if(producto.getId() == productos.get(i).getId()){
@@ -64,7 +80,10 @@ public class Vendedor extends Usuario{
             }
         }
     }
-
+    /**
+     * edita productos del vendedor
+     * @return
+     */
     public Producto editarProducto(){
         System.out.println("Seleccione el producto que desea editar");
         for(int i=0; i<productos.size(); i++){
@@ -86,6 +105,10 @@ public class Vendedor extends Usuario{
         //sc.close();
         return aux;
     }
+    /**
+     * concreta pedidos al vendedor
+     * @param orden
+     */
     public void concretarPedido(Orden orden){
         ArrayList<Producto> ordenProductos = new ArrayList<>(orden.Productos);
         for(int i=0; i<ordenProductos.size(); i++){

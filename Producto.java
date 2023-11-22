@@ -1,5 +1,8 @@
 //package Marketplace;
-
+/**
+ * Clase producto que representa un producto
+ * @version 22 nov 2023
+ */
 public class Producto {
     private int id;
     private String nombre;
@@ -8,7 +11,7 @@ public class Producto {
     private String descripcion;
     private int idVendedor;
 
-    
+    // getters y setters
     public int getId() {
         return id;
     }
@@ -65,7 +68,15 @@ public class Producto {
     public void setIdVendedor(int idVendedor) {
         this.idVendedor = idVendedor;
     }
-
+    /**
+     * constructor de producto
+     * @param id
+     * @param nombre
+     * @param precio
+     * @param cantidad
+     * @param descripcion
+     * @param idVendedor
+     */
     public Producto(int id, String nombre, float precio, int cantidad, String descripcion, int idVendedor) {
         this.id = id;
         this.nombre = nombre;

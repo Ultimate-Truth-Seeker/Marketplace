@@ -2,7 +2,10 @@
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Clase usuario que implementa el usuario del marketplace
+ * @version 22 nov 2023
+ */
 public class Usuario {
     private int id;
     private String nombre;
@@ -16,7 +19,15 @@ public class Usuario {
     public Usuario(){
         
     }
-
+    /**
+     * constructor de usuario
+     * @param id
+     * @param nombre
+     * @param nombreUsuario
+     * @param contraseña
+     * @param email
+     * @param esVendedor
+     */
     public Usuario(int id, String nombre, String nombreUsuario, String contraseña, String email, boolean esVendedor) {
         this.id = id;
         this.nombre = nombre;
@@ -27,7 +38,14 @@ public class Usuario {
         this.compras = new ArrayList<>();
         this.esVendedor = esVendedor;
     }
-
+/**
+ * constructor de usuaior
+ * @param nombre
+ * @param nombreUsuario
+ * @param contraseña
+ * @param email
+ * @param esVendedor
+ */
     public Usuario(String nombre, String nombreUsuario, String contraseña, String email, boolean esVendedor) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
@@ -37,7 +55,7 @@ public class Usuario {
         this.compras = new ArrayList<>();
         this.esVendedor = esVendedor;
     }
-    
+    // getters y setters
     public int getId() {
         return id;
     }
@@ -101,10 +119,17 @@ public class Usuario {
     public void setEsVendedor(boolean esVendedor) {
         this.esVendedor = esVendedor;
     }
-
+    /**
+     * añade al carrito productos
+     * @param producto producto a añadir
+     */
     public void añadirAlCarrito(Producto producto) {
         carrito.add(producto);
     }
+    /**
+     * añade orden de compra
+     * @param orden la orden a añadir
+     */
     public void añadirCompra(Orden orden) {
         compras.add(orden);
     }

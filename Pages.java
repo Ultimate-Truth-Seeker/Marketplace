@@ -103,9 +103,13 @@ public class Pages {
             }
 
             System.out.println("Creado con éxito!");
+            try {
             String query1 = String.format("SELECT * FROM usuarios where nombreUsuario = '%s'", username);
             var usuarios = Server.getUsuarios(query1);
             return usuarios.get(0);
+            } catch (Exception e) {
+                
+            }
         }
         System.out.println("Cancelando...");
         return null;
