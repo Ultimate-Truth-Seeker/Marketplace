@@ -110,14 +110,23 @@ public class Pages {
         System.out.println("Cancelando...");
         return null;
     }
-
+/**
+ * Mensaje de cierre de sesión
+ */
     public static void Logout() {
         System.out.println("Cerrando Sesión...");
     }
-
+/**
+ * mensaje de solicitud de búsqueda
+ */
     public static void Search() {
         System.out.println("Ingrese el nombre de un producto que desee comprar:");
     }
+    /**
+     * resultados de búsqueda de producto
+     * @param query nombre que se buscó
+     * @param productos listado de productos en programa
+     */
     public static void SearchResults(String query, List<Producto> productos) {
         System.out.println("Resultados de búsqueda: ");
         for (Producto p : productos) {
@@ -128,12 +137,19 @@ public class Pages {
         }
         System.out.println("Ingrese el id del producto que desee ver, o 0 para regresar ");
     }
-
+    /**
+     * página de detalles del producto
+     * @param producto producto en la página
+     */
     public static void ProductPage(Producto producto) {
         System.out.println("Detalles del producto: ");
         System.out.println("ID: " + producto.getId() + "\nNombre: " + producto.getNombre() + "\nPrecio: $" + producto.getPrecio() + "\nDescripción del producto: " + producto.getDescripcion() + "\nCantidad disponible: " + producto.getCantidad());
         System.out.println("Ingrese cero para regresar, o ingrese el número de items de este tipo que desea añadir al carrito");
     }
+    /**
+     * página de añadir al carrito
+     * @param amount cantidad añadida, 0 si no se añadió
+     */
     public static void PPageMessage(int amount) {
         if (amount == 0) {
             System.out.println("Regresando...");
@@ -141,7 +157,13 @@ public class Pages {
             System.out.println("Añadido al carrito con éxito!");
         }
     }
-
+    /**
+     * página de configuración de perfil
+     * @param users listado de usuarios en programa
+     * @param logedUser índice del usuario en sesión
+     * @param s scanner de entrada
+     * @return si se convierte a vendedor
+     */
     public static boolean Config(List<Usuario> users, int logedUser, Scanner s) {
         Usuario u = users.get(logedUser); boolean menu = true;
         while (menu) {
@@ -220,7 +242,13 @@ public class Pages {
         }
         return false;
     }
-
+    /**
+     * configuración de tiendas
+     * @param sellers listado de vendedores
+     * @param productos listado de productos
+     * @param logedUser índice del usuario en sesión
+     * @param s escanner de entrada
+     */
     public static void ConfigStore(List<Vendedor> sellers, List<Producto> productos, int logedUser, Scanner s) {
         System.out.println("Configuración de productos");
         System.out.println("Productos que tiene a la venta:");
@@ -281,7 +309,10 @@ public class Pages {
             break;
         }
     }
-
+    /**
+     * página del carrito de compras
+     * @param items objetos en el carrito
+     */
     public static void Cart(List<Producto> items) {
         System.out.println("Productos en el carrito:");
         for (Producto p : items) {
@@ -289,7 +320,12 @@ public class Pages {
         }
         System.out.println("Elija una opción:\n1. Pagar\n2. Quitar item\n3. Regresar");
     }
-
+    /**
+     * pagina para remover items
+     * @param items listado de items 
+     * @param s scanner de entrada
+     * @return lista nueva de productos
+     */
     public static List<Producto> RemoveItem(List<Producto> items, Scanner s) {
         System.out.println("Ingrese el id del producto que desea quitar:");
         int id = s.nextInt();
@@ -305,7 +341,12 @@ public class Pages {
         }
         return items;
     }
-
+    /**
+     * página de compra de producto
+     * @param s scanner de entrada
+     * @param cart carrito a pagar
+     * @return confirmación de compra
+     */
     public static boolean Pagar(Scanner s, List<Producto> cart) {
         System.out.println("RESUMEN DE LA FACTURA");
         float TOTAL = 0;
@@ -331,7 +372,11 @@ public class Pages {
         return true;
         
     }
-
+    /**
+     * página de contacto final
+     * @param productos lista de productos
+     * @param sellers lista de vendedores
+     */
     public static void Contact(List<Producto> productos, List<Vendedor> sellers) {
         System.out.println("Pago realizado");
         System.out.println("Contacto con los vendedores: ");
@@ -344,7 +389,9 @@ public class Pages {
             }
         }
     }
-
+    /**
+     * página del tutorial de uso
+     */
     public static void Tutorial() {
 
         System.out.println("Tutorial de uso");
